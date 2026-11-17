@@ -243,13 +243,21 @@ function ProductCard({ product, index }: { product: (typeof products)[number]; i
       <div className="relative h-72 overflow-hidden bg-white sm:h-80">
         <img
           src={product.image}
-          alt={product.name}
-          className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 z-0 h-full w-full scale-110 object-cover blur-xl opacity-70"
           style={{ objectPosition: product.position }}
           loading={index > 2 ? "lazy" : "eager"}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-wine/40 via-transparent to-transparent" />
-        <span className="absolute left-5 top-5 rounded-full border border-white/30 bg-wine/70 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-md">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="relative z-10 h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+          style={{ objectPosition: product.position }}
+          loading={index > 2 ? "lazy" : "eager"}
+        />
+        <div className="absolute inset-0 z-20 bg-gradient-to-t from-wine/40 via-transparent to-transparent" />
+        <span className="absolute left-5 top-5 z-30 rounded-full border border-white/30 bg-wine/70 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-md">
           {product.category}
         </span>
       </div>
