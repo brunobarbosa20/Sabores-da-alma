@@ -433,7 +433,7 @@ export default function App() {
             <img
               src={publicAsset("catalogo/arvores-recheadas.jpg")}
               alt="Árvores de chocolate recheadas de Natal"
-              className="relative aspect-[4/5] w-full rounded-[2rem] object-cover object-[28%_45%] shadow-2xl"
+              className="relative aspect-[1169/1280] w-full rounded-[2rem] object-cover object-center shadow-2xl"
               loading="lazy"
             />
             <div className="absolute -bottom-7 -right-2 rounded-2xl bg-gold p-5 text-wine shadow-xl sm:-right-7 sm:p-7">
