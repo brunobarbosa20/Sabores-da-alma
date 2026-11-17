@@ -2,6 +2,11 @@ import { useEffect, useState, type ReactNode } from "react";
 
 const WHATSAPP_NUMBER = "5518997002040";
 const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+const navigationLinks = [
+  { href: "#colecao", label: "Coleção" },
+  { href: "#sabores", label: "Sabores" },
+  { href: "#encomendas", label: "Encomendas" },
+];
 
 const products = [
   {
@@ -163,6 +168,18 @@ function ChevronIcon({ className = "" }: { className?: string }) {
   );
 }
 
+function MenuIcon({ isOpen }: { isOpen: boolean }) {
+  return (
+    <Icon className="h-5 w-5">
+      {isOpen ? (
+        <path d="m6 6 12 12M18 6 6 18" />
+      ) : (
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      )}
+    </Icon>
+  );
+}
+
 function Logo({ compact = false }: { compact?: boolean }) {
   return (
     <a
@@ -299,6 +316,7 @@ function ProductCard({ product, index }: { product: (typeof products)[number]; i
 export default function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [isWelcomeClosing, setIsWelcomeClosing] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = showWelcome ? "hidden" : "";
@@ -338,27 +356,59 @@ export default function App() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-12">
           <Logo compact />
           <nav className="hidden items-center gap-8 md:flex" aria-label="Navegação principal">
-            <a href="#colecao" className="nav-link">
-              Coleção
-            </a>
-            <a href="#sabores" className="nav-link">
-              Sabores
-            </a>
-            <a href="#encomendas" className="nav-link">
-              Encomendas
-            </a>
+            {navigationLinks.map(({ href, label }) => (
+              <a key={href} href={href} className="nav-link">
+                {label}
+              </a>
+            ))}
           </nav>
           <a
             href={whatsappLink()}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-gold/50 px-4 py-2.5 text-[9px] font-bold uppercase tracking-[0.16em] text-gold transition-colors hover:bg-gold hover:text-wine sm:px-5"
+            className="hidden items-center gap-2 rounded-full border border-gold/50 px-4 py-2.5 text-[9px] font-bold uppercase tracking-[0.16em] text-gold transition-colors hover:bg-gold hover:text-wine sm:px-5 md:inline-flex"
           >
             <WhatsAppIcon className="h-4 w-4" />
-            <span className="hidden sm:inline">Fale conosco</span>
-            <span className="sm:hidden">WhatsApp</span>
+            <span>Fale conosco</span>
           </a>
+          <button
+            type="button"
+            className="grid h-11 w-11 place-items-center rounded-full border border-gold/50 text-gold transition-colors hover:bg-gold hover:text-wine focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold md:hidden"
+            aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
+          >
+            <MenuIcon isOpen={isMobileMenuOpen} />
+          </button>
         </div>
+        {isMobileMenuOpen && (
+          <nav
+            id="mobile-navigation"
+            className="absolute left-5 right-5 top-full z-50 mt-2 rounded-2xl border border-gold/30 bg-wine/95 p-3 shadow-xl backdrop-blur-md md:hidden"
+            aria-label="Navegação para dispositivos móveis"
+          >
+            {navigationLinks.map(({ href, label }) => (
+              <a
+                key={href}
+                href={href}
+                className="block rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-[0.18em] text-cream transition-colors hover:bg-white/10 hover:text-gold focus-visible:outline-2 focus-visible:outline-gold"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {label}
+              </a>
+            ))}
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 flex items-center gap-3 rounded-xl border-t border-white/10 px-4 py-4 text-xs font-bold uppercase tracking-[0.18em] text-gold"
+            >
+              <WhatsAppIcon className="h-4 w-4" />
+              Fale conosco
+            </a>
+          </nav>
+        )}
       </header>
 
       <section id="inicio" className="relative min-h-[760px] bg-wine text-cream lg:min-h-[850px]">
