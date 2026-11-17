@@ -253,7 +253,7 @@ function ProductCard({ product, index }: { product: (typeof products)[number]; i
           src={product.image}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 z-0 h-full w-full scale-110 object-cover blur-xl opacity-70"
+          className="absolute inset-0 z-0 h-full w-full scale-105 object-cover blur-md opacity-70 sm:scale-110 sm:blur-xl"
           style={{ objectPosition: product.position }}
           loading={index > 2 ? "lazy" : "eager"}
         />
