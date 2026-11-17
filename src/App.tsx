@@ -5,6 +5,14 @@ const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
 
 const products = [
   {
+    name: "Casinha com pote",
+    detail: "Casinha presenteável + pote de 140 ml",
+    price: "R$ 22,90",
+    image: publicAsset("catalogo/casinha-de-natal.jpg"),
+    position: "50% 49%",
+    category: "Presentes",
+  },
+  {
     name: "Caixinha Coração",
     detail: "9 brigadeiros de 20 g",
     price: "R$ 35,00",
