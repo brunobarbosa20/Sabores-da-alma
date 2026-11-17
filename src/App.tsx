@@ -198,9 +198,22 @@ function Logo({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function Welcome({ onEnter }: { onEnter: () => void }) {
+function Welcome({
+  onEnter,
+  isClosing,
+  onExitComplete,
+}: {
+  onEnter: () => void;
+  isClosing: boolean;
+  onExitComplete: () => void;
+}) {
   return (
-    <div className="welcome fixed inset-0 z-[100] overflow-hidden bg-wine text-cream">
+    <div
+      className={`welcome fixed inset-0 z-[100] overflow-hidden bg-wine text-cream ${isClosing ? "welcome-leave" : ""}`}
+      onAnimationEnd={(event) => {
+        if (event.target === event.currentTarget && isClosing) onExitComplete();
+      }}
+    >
       <div className="absolute inset-0 bg-[url('/catalogo/capa-natal.jpg')] bg-cover bg-center opacity-35" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(44,4,9,.96)_0%,rgba(74,4,12,.78)_48%,rgba(44,4,9,.4)_100%)]" />
       <div className="light-string" aria-hidden="true" />
@@ -281,6 +294,7 @@ function ProductCard({ product, index }: { product: (typeof products)[number]; i
 
 export default function App() {
   const [showWelcome, setShowWelcome] = useState(true);
+  const [isWelcomeClosing, setIsWelcomeClosing] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = showWelcome ? "hidden" : "";
@@ -308,7 +322,13 @@ export default function App() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-cream text-cocoa">
-      {showWelcome && <Welcome onEnter={() => setShowWelcome(false)} />}
+      {showWelcome && (
+        <Welcome
+          onEnter={() => setIsWelcomeClosing(true)}
+          isClosing={isWelcomeClosing}
+          onExitComplete={() => setShowWelcome(false)}
+        />
+      )}
 
       <header className="absolute left-0 top-0 z-40 w-full border-b border-white/10">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-12">

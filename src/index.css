@@ -174,6 +174,11 @@
   animation: welcome-arrive 700ms ease-out both;
 }
 
+.welcome-leave {
+  animation: welcome-depart 650ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  pointer-events: none;
+}
+
 .welcome-in {
   opacity: 0;
   transform: translateY(22px);
@@ -285,6 +290,13 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes welcome-depart {
+  to {
+    opacity: 0;
+    transform: translateY(-1.5rem);
   }
 }
 
