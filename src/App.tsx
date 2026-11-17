@@ -1,13 +1,14 @@
 import { useEffect, useState, type ReactNode } from "react";
 
 const WHATSAPP_NUMBER = "5518997002040";
+const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
 
 const products = [
   {
     name: "Casinha com pote",
     detail: "Casinha presenteável + pote de 140 ml",
     price: "R$ 22,90",
-    image: "/catalogo/casinha-de-natal.jpg",
+    image: publicAsset("catalogo/casinha-de-natal.jpg"),
     position: "50% 49%",
     category: "Presentes",
   },
@@ -15,7 +16,7 @@ const products = [
     name: "Caixinha Coração",
     detail: "9 brigadeiros de 20 g",
     price: "R$ 35,00",
-    image: "/catalogo/caixinhas-especiais.jpg",
+    image: publicAsset("catalogo/caixinhas-especiais.jpg"),
     position: "20% 28%",
     category: "Brigadeiros",
   },
@@ -23,7 +24,7 @@ const products = [
     name: "Caixinha Árvore",
     detail: "6 brigadeiros de 20 g",
     price: "R$ 25,00",
-    image: "/catalogo/caixinhas-especiais.jpg",
+    image: publicAsset("catalogo/caixinhas-especiais.jpg"),
     position: "22% 74%",
     category: "Brigadeiros",
   },
@@ -31,7 +32,7 @@ const products = [
     name: "Caixinha Noel",
     detail: "4 brigadeiros de 20 g",
     price: "R$ 18,00",
-    image: "/catalogo/caixinhas-especiais.jpg",
+    image: publicAsset("catalogo/caixinhas-especiais.jpg"),
     position: "82% 70%",
     category: "Brigadeiros",
   },
@@ -39,7 +40,7 @@ const products = [
     name: "Árvore Box Premium",
     detail: "Chocolate recheado • 90 g",
     price: "R$ 24,90",
-    image: "/catalogo/arvores-recheadas.jpg",
+    image: publicAsset("catalogo/arvores-recheadas.jpg"),
     position: "24% 48%",
     category: "Árvores",
   },
@@ -47,7 +48,7 @@ const products = [
     name: "Árvore Temática",
     detail: "Chocolate recheado • 90 g",
     price: "R$ 19,90",
-    image: "/catalogo/arvores-recheadas.jpg",
+    image: publicAsset("catalogo/arvores-recheadas.jpg"),
     position: "70% 48%",
     category: "Árvores",
   },
@@ -55,7 +56,7 @@ const products = [
     name: "Árvore de Chocolate",
     detail: "Chocolate artesanal • 95 g",
     price: "R$ 19,90",
-    image: "/catalogo/chocolates.jpg",
+    image: publicAsset("catalogo/chocolates.jpg"),
     position: "21% 27%",
     category: "Chocolates",
   },
@@ -63,7 +64,7 @@ const products = [
     name: "Barra Papai Noel",
     detail: "Chocolate recheado • 260 g",
     price: "R$ 44,90",
-    image: "/catalogo/chocolates.jpg",
+    image: publicAsset("catalogo/chocolates.jpg"),
     position: "21% 53%",
     category: "Chocolates",
   },
@@ -71,7 +72,7 @@ const products = [
     name: "Guirlanda de Chocolate",
     detail: "Chocolate recheado • 310 g",
     price: "R$ 54,90",
-    image: "/catalogo/chocolates.jpg",
+    image: publicAsset("catalogo/chocolates.jpg"),
     position: "22% 78%",
     category: "Chocolates",
   },
@@ -214,7 +215,10 @@ function Welcome({
         if (event.target === event.currentTarget && isClosing) onExitComplete();
       }}
     >
-      <div className="absolute inset-0 bg-[url('/catalogo/capa-natal.jpg')] bg-cover bg-center opacity-35" />
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-35"
+        style={{ backgroundImage: `url("${publicAsset("catalogo/capa-natal.jpg")}")` }}
+      />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(44,4,9,.96)_0%,rgba(74,4,12,.78)_48%,rgba(44,4,9,.4)_100%)]" />
       <div className="light-string" aria-hidden="true" />
       <div className="relative mx-auto flex min-h-full max-w-7xl flex-col px-6 py-8 sm:px-10 lg:px-16">
@@ -358,7 +362,10 @@ export default function App() {
       </header>
 
       <section id="inicio" className="relative min-h-[760px] bg-wine text-cream lg:min-h-[850px]">
-        <div className="absolute inset-0 bg-[url('/catalogo/capa-natal.jpg')] bg-cover bg-[center_43%] opacity-30 lg:bg-[right_28%_center]" />
+        <div
+          className="absolute inset-0 bg-cover bg-[center_43%] opacity-30 lg:bg-[right_28%_center]"
+          style={{ backgroundImage: `url("${publicAsset("catalogo/capa-natal.jpg")}")` }}
+        />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#3d050c_0%,rgba(70,5,14,.92)_40%,rgba(63,5,13,.25)_100%)]" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-wine to-transparent" />
         <div className="ornament ornament-one" aria-hidden="true" />
@@ -424,7 +431,7 @@ export default function App() {
           <div className="reveal relative mx-auto w-full max-w-lg">
             <div className="absolute -left-5 -top-5 h-full w-full rounded-[2rem] border border-gold/30" />
             <img
-              src="/catalogo/arvores-recheadas.jpg"
+              src={publicAsset("catalogo/arvores-recheadas.jpg")}
               alt="Árvores de chocolate recheadas de Natal"
               className="relative aspect-[4/5] w-full rounded-[2rem] object-cover object-[28%_45%] shadow-2xl"
               loading="lazy"
@@ -513,7 +520,10 @@ export default function App() {
       </section>
 
       <section className="relative overflow-hidden bg-[#3b050c] px-5 py-28 text-center text-cream sm:px-8 sm:py-36">
-        <div className="absolute inset-0 bg-[url('/catalogo/capa-natal.jpg')] bg-cover bg-[center_70%] opacity-15" />
+        <div
+          className="absolute inset-0 bg-cover bg-[center_70%] opacity-15"
+          style={{ backgroundImage: `url("${publicAsset("catalogo/capa-natal.jpg")}")` }}
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-[#3b050c]/30 to-[#3b050c]" />
         <div className="reveal relative mx-auto max-w-4xl">
           <p className="eyebrow justify-center text-gold">Sua mesa merece esse carinho</p>
