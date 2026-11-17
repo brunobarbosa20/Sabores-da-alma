@@ -5,75 +5,59 @@ const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
 
 const products = [
   {
-    name: "Casinha com pote",
-    detail: "Casinha presenteável + pote de 140 ml",
-    price: "R$ 22,90",
-    image: publicAsset("catalogo/casinha-de-natal.jpg"),
-    position: "50% 49%",
-    category: "Presentes",
-  },
-  {
     name: "Caixinha Coração",
     detail: "9 brigadeiros de 20 g",
     price: "R$ 35,00",
-    image: publicAsset("catalogo/caixinhas-especiais.jpg"),
-    position: "20% 28%",
+    image: publicAsset("catalogo/caixinha-coracao.png"),
+    position: "50% 50%",
     category: "Brigadeiros",
   },
   {
     name: "Caixinha Árvore",
     detail: "6 brigadeiros de 20 g",
     price: "R$ 25,00",
-    image: publicAsset("catalogo/caixinhas-especiais.jpg"),
-    position: "22% 74%",
+    image: publicAsset("catalogo/caixinha-arvore.png"),
+    position: "50% 50%",
     category: "Brigadeiros",
   },
   {
-    name: "Caixinha Noel",
+    name: "Caixinha (4 unidades)",
     detail: "4 brigadeiros de 20 g",
     price: "R$ 18,00",
-    image: publicAsset("catalogo/caixinhas-especiais.jpg"),
-    position: "82% 70%",
+    image: publicAsset("catalogo/caixinha-quatro-unidades.png"),
+    position: "50% 50%",
     category: "Brigadeiros",
   },
   {
-    name: "Árvore Box Premium",
+    name: "Árvore na Caixinha Temática",
     detail: "Chocolate recheado • 90 g",
     price: "R$ 24,90",
-    image: publicAsset("catalogo/arvores-recheadas.jpg"),
-    position: "24% 48%",
-    category: "Árvores",
-  },
-  {
-    name: "Árvore Temática",
-    detail: "Chocolate recheado • 90 g",
-    price: "R$ 19,90",
-    image: publicAsset("catalogo/arvores-recheadas.jpg"),
-    position: "70% 48%",
+    image: publicAsset("catalogo/arvore-caixinha-tematica.png"),
+    position: "50% 50%",
     category: "Árvores",
   },
   {
     name: "Árvore de Chocolate",
     detail: "Chocolate artesanal • 95 g",
     price: "R$ 19,90",
-    image: publicAsset("catalogo/chocolates.jpg"),
-    position: "21% 27%",
+    image: publicAsset("catalogo/arvore-chocolate.png"),
+    position: "50% 50%",
     category: "Chocolates",
   },
   {
     name: "Barra Papai Noel",
     detail: "Chocolate recheado • 260 g",
     price: "R$ 44,90",
-    image: publicAsset("catalogo/chocolates.jpg"),
-    position: "21% 53%",
+    image: publicAsset("catalogo/barra-papai-noel.png"),
+    position: "50% 50%",
     category: "Chocolates",
   },
   {
     name: "Guirlanda de Chocolate",
     detail: "Chocolate recheado • 310 g",
     price: "R$ 54,90",
-    image: publicAsset("catalogo/chocolates.jpg"),
-    position: "22% 78%",
+    image: publicAsset("catalogo/guirlanda-chocolate.png"),
+    position: "50% 50%",
     category: "Chocolates",
   },
 ];
@@ -256,11 +240,11 @@ function Welcome({
 function ProductCard({ product, index }: { product: (typeof products)[number]; index: number }) {
   return (
     <article className="reveal group overflow-hidden rounded-[1.75rem] border border-wine/10 bg-white shadow-[0_18px_55px_rgba(83,24,25,.09)]">
-      <div className="relative h-72 overflow-hidden sm:h-80">
+      <div className="relative h-72 overflow-hidden bg-white sm:h-80">
         <img
           src={product.image}
           alt={product.name}
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+          className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.06]"
           style={{ objectPosition: product.position }}
           loading={index > 2 ? "lazy" : "eager"}
         />
